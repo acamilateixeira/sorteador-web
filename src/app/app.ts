@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { draw, namePool, numberPool } from './draw';
 
 type Mode = 'names' | 'numbers';
@@ -19,6 +19,13 @@ export class App {
   readonly max = new FormControl<number | null>(100);
   readonly quantity = new FormControl<number | null>(1);
   readonly excludePrevious = new FormControl(true, { nonNullable: true });
+  readonly configuration = new FormGroup({
+    names: this.names,
+    min: this.min,
+    max: this.max,
+    quantity: this.quantity,
+    excludePrevious: this.excludePrevious,
+  });
   readonly result = signal<Round | null>(null);
   readonly history = signal<Round[]>([]);
   readonly error = signal('');

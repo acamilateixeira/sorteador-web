@@ -23,23 +23,23 @@
         <button type="button" [attr.aria-pressed]="mode() === 'numbers'" (click)="selectMode('numbers')">Números</button>
       </div>
 
-      <form (ngSubmit)="drawRound()" novalidate>
+      <form [formGroup]="configuration" (ngSubmit)="drawRound()" novalidate>
         @if (mode() === 'names') {
           <div class="field-heading">
             <label for="names">Lista de nomes</label>
             <button type="button" class="text-button" (click)="useExample()">Usar exemplo</button>
           </div>
-          <textarea id="names" [formControl]="names" rows="6" maxlength="250000" placeholder="Um nome por linha" aria-describedby="names-help"></textarea>
+          <textarea id="names" formControlName="names" rows="6" maxlength="250000" placeholder="Um nome por linha" aria-describedby="names-help"></textarea>
           <p class="hint" id="names-help">Linhas vazias e nomes duplicados são ignorados.</p>
         } @else {
           <div class="range">
-            <div><label for="min">Do número</label><input id="min" type="number" [formControl]="min"></div>
-            <div><label for="max">Até o número</label><input id="max" type="number" [formControl]="max"></div>
+            <div><label for="min">Do número</label><input id="min" type="number" formControlName="min"></div>
+            <div><label for="max">Até o número</label><input id="max" type="number" formControlName="max"></div>
           </div>
         }
         <label for="quantity">Quantidade por rodada</label>
-        <input id="quantity" type="number" min="1" max="200" [formControl]="quantity">
-        <label class="check"><input type="checkbox" [formControl]="excludePrevious"> Excluir resultados anteriores deste conjunto</label>
+        <input id="quantity" type="number" min="1" max="200" formControlName="quantity">
+        <label class="check"><input type="checkbox" formControlName="excludePrevious"> Excluir resultados anteriores deste conjunto</label>
         @if (error()) {
           <p class="error" role="alert">{{ error() }}</p>
         }
