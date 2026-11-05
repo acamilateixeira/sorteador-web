@@ -1,0 +1,60 @@
+.wrap { width: min(1080px, calc(100% - 40px)); margin-inline: auto; }
+.site-header { border-bottom: 1px solid #e9e2f3; background: #fff; }
+.header-inner { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; color: #251a39; text-decoration: none; }
+.brand-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: white; background: #603bb8; }
+.local-badge { display: flex; align-items: center; gap: 7px; color: #514168; font-size: 12px; }
+.local-badge span { width: 7px; height: 7px; background: #2e7854; border-radius: 50%; }
+.intro { padding: clamp(34px, 7vw, 75px) 0 28px; }
+.eyebrow { margin: 0 0 8px; font-size: 11px; font-weight: 800; letter-spacing: .16em; color: #61479a; }
+h1, h2 { margin: 0; line-height: 1.08; letter-spacing: -.035em; }
+h1 { font-size: clamp(36px, 6vw, 66px); }
+h1 em { color: #6943bf; font-style: normal; }
+.intro > p:last-child { margin: 14px 0 0; color: #574c65; }
+.workspace { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 20px; }
+.panel { min-width: 0; border-radius: 22px; padding: clamp(20px, 4vw, 30px); }
+.setup { border: 1px solid #e8e0f1; background: #fff; box-shadow: 0 14px 34px #4c356b0b; }
+h2 { font-size: clamp(24px, 4vw, 30px); }
+.mode-switch { display: flex; gap: 6px; padding: 5px; margin: 20px 0; border-radius: 12px; background: #f1ecf7; }
+.mode-switch button { flex: 1; padding: 9px 12px; color: #463757; border-radius: 9px; }
+.mode-switch button[aria-pressed="true"] { background: #fff; color: #48298c; box-shadow: 0 1px 5px #32224616; font-weight: 750; }
+label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 14px; }
+.field-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.text-button { color: #512f9e; font-size: 13px; text-decoration: underline; padding: 0; background: transparent; }
+textarea, input[type="number"] { width: 100%; border: 1px solid #b9aacb; border-radius: 10px; padding: 10px 12px; color: #241b32; background: #fdfcff; }
+textarea { resize: vertical; }
+.hint { font-size: 12px; color: #5c5069; margin: 5px 0 15px; }
+.range { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+.check { display: flex; align-items: center; gap: 9px; margin-top: 14px; font-size: 13px; font-weight: 550; }
+.check input { width: 16px; height: 16px; accent-color: #603bb8; flex: 0 0 auto; }
+.error { color: #972341; background: #fff2f4; padding: 9px 12px; border-radius: 8px; font-size: 13px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+.primary, .secondary { padding: 11px 16px; border-radius: 10px; font-weight: 750; }
+.primary { background: #5834ac; color: #fff; }
+.primary:hover { background: #462889; }
+.primary span { margin-left: 7px; }
+.secondary { background: #eee8f6; color: #4d3870; }
+.secondary:disabled { opacity: .55; cursor: default; }
+.result { min-height: 340px; background: linear-gradient(135deg, #332157, #57328e); color: #fff; }
+.result .eyebrow { color: #ded1f8; }
+.result-content { margin-top: 22px; }
+.empty-result { min-height: 150px; border: 1px dashed #d6c0fc80; display: grid; align-content: center; justify-items: center; gap: 8px; text-align: center; padding: 16px; border-radius: 16px; color: #f0e6ff; }
+.empty-result span { font-size: 34px; line-height: 1; }
+.empty-result p { margin: 0; }
+.round-label { color: #e7dbff; font-size: 11px; letter-spacing: .12em; font-weight: 800; }
+.winners { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.winners li { background: #fbf8ff; color: #39235c; border-radius: 10px; font-weight: 800; padding: 10px 14px; overflow-wrap: anywhere; }
+.history { margin-top: 20px; padding-top: 14px; border-top: 1px solid #d6c0fc60; font-size: 13px; }
+.history summary { cursor: pointer; }
+.history ol { margin: 8px 0 0; padding-left: 18px; }
+.history li { padding-block: 4px; overflow-wrap: anywhere; }
+.history li span { margin-left: 8px; }
+footer { margin: 24px 0; color: #5c5069; font-size: 13px; }
+@media (max-width: 720px) {
+  .workspace { grid-template-columns: 1fr; }
+  .result { min-height: 270px; }
+}
+@media (max-width: 410px) {
+  .wrap { width: calc(100% - 24px); }
+  .local-badge { font-size: 10px; }
+}

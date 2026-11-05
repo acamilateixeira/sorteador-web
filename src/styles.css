@@ -1,0 +1,5 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f8f5fc; color: #251a39; font: 16px/1.5 system-ui, sans-serif; }
+button, input, textarea { font: inherit; }
+button { border: 0; cursor: pointer; }
+:focus-visible { outline: 3px solid #9871e5; outline-offset: 3px; }
