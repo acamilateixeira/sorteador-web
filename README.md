@@ -2,6 +2,8 @@
 
 **Português** · [English](README.en.md) · [Abrir Sorteador](https://acamilateixeira.github.io/sorteador-web/)
 
+[![Testes e deploy](https://github.com/acamilateixeira/sorteador-web/actions/workflows/pages.yml/badge.svg)](https://github.com/acamilateixeira/sorteador-web/actions/workflows/pages.yml)
+
 Sorteie nomes ou números pelo navegador para atividades, eventos e dinâmicas. A versão Angular tem identidade visual própria, campos acessíveis por teclado e histórico de rodadas na sessão.
 
 ## Como usar
