@@ -113,7 +113,9 @@ describe('Sorteador', () => {
     await other.componentInstance.verifyFromLink(encodeReceipt(receipt));
     expect(other.componentInstance.verification()?.ok).toBe(true);
 
-    await other.componentInstance.verifyFromLink(encodeReceipt({ ...receipt, contribution: 'outra' }));
+    // Trocar a semente sempre quebra o compromisso; trocar só a contribuição
+    // pode, por acaso, repetir o vencedor numa lista de 3 nomes.
+    await other.componentInstance.verifyFromLink(encodeReceipt({ ...receipt, seed: 'f'.repeat(64) }));
     other.detectChanges();
     expect(other.componentInstance.verification()?.ok).toBe(false);
     expect(LINK_PREFIX).toBe('#verificar=');
