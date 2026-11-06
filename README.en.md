@@ -2,6 +2,8 @@
 
 [Português](README.md) · **English** · [Open Sorteador](https://acamilateixeira.github.io/sorteador-web/)
 
+[![Testes e deploy](https://github.com/acamilateixeira/sorteador-web/actions/workflows/pages.yml/badge.svg)](https://github.com/acamilateixeira/sorteador-web/actions/workflows/pages.yml)
+
 A browser-based name and number picker for events and activities. The Angular version has its own visual identity, keyboard-friendly fields, and a session history.
 
 ## How to use it

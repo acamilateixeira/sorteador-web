@@ -18,6 +18,18 @@ describe('Sorteador', () => {
     expect(app.result()).toBeNull();
   });
 
+  it('explains how many options are left when the round asks for more', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    app.names.setValue('Ana\nBia\nCaio');
+    app.quantity.setValue(2);
+    app.drawRound();
+    app.drawRound();
+
+    expect(app.error()).toBe('Resta 1 opção nesta sequência. Diminua a quantidade ou comece uma nova sequência.');
+    expect(app.history()).toHaveLength(1);
+  });
+
   it('submits the form and draws without a native page navigation', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.componentInstance.names.setValue('Ana');

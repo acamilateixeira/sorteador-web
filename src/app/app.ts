@@ -54,6 +54,11 @@ export class App {
         ? pool.filter((entry) => !this.previous.has(entry.toLowerCase()))
         : pool;
       if (available.length === 0) throw new Error('Todas as opções já saíram. Comece uma nova sequência.');
+      const quantity = this.quantity.value;
+      if (this.excludePrevious.value && quantity !== null && quantity > available.length && available.length < pool.length) {
+        const left = available.length === 1 ? 'Resta 1 opção' : `Restam ${available.length} opções`;
+        throw new Error(`${left} nesta sequência. Diminua a quantidade ou comece uma nova sequência.`);
+      }
 
       const winners = draw(available, this.quantity.value);
       for (const winner of winners) this.previous.add(winner.toLowerCase());
