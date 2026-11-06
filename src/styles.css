@@ -3,3 +3,24 @@ body { margin: 0; background: #f8f5fc; color: #251a39; font: 16px/1.5 system-ui,
 button, input, textarea { font: inherit; }
 button { border: 0; cursor: pointer; }
 :focus-visible { outline: 3px solid #9871e5; outline-offset: 3px; }
+
+/* Sorteio auditável (global para não estourar o orçamento de estilo do componente) */
+.commitment { margin-top: 14px; padding: 14px; border-radius: 12px; background: #f5f0fc; border: 1px solid #e2d6f3; }
+.commitment-title { margin: 0 0 8px; font-weight: 750; font-size: 14px; }
+.commitment input[type="text"] { width: 100%; border: 1px solid #b9aacb; border-radius: 10px; padding: 10px 12px; background: #fff; }
+.hash { display: block; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; padding: 8px 10px; border-radius: 8px; background: #fff; color: #39235c; margin-bottom: 6px; }
+.receipt { margin-top: 16px; font-size: 13px; }
+.receipt summary { cursor: pointer; font-weight: 700; }
+.receipt dl { margin: 10px 0 0; }
+.receipt dt { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #e7dbff; margin-top: 8px; }
+.receipt dd { margin: 4px 0 0; }
+.receipt-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.ghost { padding: 8px 12px; border-radius: 9px; background: #ffffff1f; color: #fff; border: 1px solid #ffffff4d; font-weight: 650; }
+.verify { margin-top: 20px; border: 1px solid #e8e0f1; background: #fff; }
+.verify textarea { font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.verdict { margin-top: 16px; padding: 12px 14px; border-radius: 12px; background: #fff2f4; color: #7c1d36; }
+.verdict.ok { background: #ecf7f0; color: #1f5a3a; }
+.verdict p { margin: 0 0 6px; }
+.verdict ul { margin: 0; padding: 0; list-style: none; }
+.verdict li { padding: 3px 0; font-size: 14px; }
+.primary:disabled { opacity: .6; cursor: progress; }

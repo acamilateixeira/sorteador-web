@@ -32,12 +32,16 @@ function randomIndex(length: number): number {
   return buffer[0]! % length;
 }
 
-export function draw(pool: readonly string[], count: number | null): string[] {
+export function validateCount(count: number | null, poolLength: number): asserts count is number {
   if (count === null || !Number.isInteger(count) || count < 1) {
     throw new Error('Informe uma quantidade inteira maior que zero.');
   }
   if (count > 200) throw new Error('Sorteie até 200 resultados por rodada.');
-  if (count > pool.length) throw new Error('A quantidade é maior que o total de opções disponíveis.');
+  if (count > poolLength) throw new Error('A quantidade é maior que o total de opções disponíveis.');
+}
+
+export function draw(pool: readonly string[], count: number | null): string[] {
+  validateCount(count, pool.length);
 
   const available = [...pool];
   for (let index = 0; index < count; index++) {

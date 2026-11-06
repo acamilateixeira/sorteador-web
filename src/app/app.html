@@ -9,7 +9,7 @@
   <section class="intro" aria-labelledby="page-title">
     <p class="eyebrow">FERRAMENTA GRATUITA</p>
     <h1 id="page-title">Sorteie nomes <em>ou números.</em></h1>
-    <p>Monte a lista, escolha quantos resultados quer e acompanhe cada rodada.</p>
+    <p>Monte a lista, escolha quantos resultados quer e, se precisar, prove que o sorteio não foi manipulado.</p>
   </section>
 
   <div class="workspace">
@@ -40,11 +40,29 @@
         <label for="quantity">Quantidade por rodada</label>
         <input id="quantity" type="number" min="1" max="200" formControlName="quantity">
         <label class="check"><input type="checkbox" formControlName="excludePrevious"> Excluir resultados anteriores deste conjunto</label>
+        <label class="check"><input type="checkbox" formControlName="audited" aria-describedby="audit-help" (change)="cancelCommitment()"> Sorteio auditável</label>
+        <p class="hint" id="audit-help">Publica um código de compromisso antes do sorteio e gera um comprovante que qualquer pessoa pode verificar.</p>
+        @if (pending(); as commitment) {
+          <div class="commitment" aria-live="polite">
+            <p class="commitment-title">1. Divulgue este compromisso antes de sortear</p>
+            <code class="hash" data-test="commitment">{{ commitment.commitment }}</code>
+            <button type="button" class="text-button" (click)="copy(commitment.commitment, 'compromisso')">
+              {{ copied() === 'compromisso' ? 'Copiado' : 'Copiar compromisso' }}
+            </button>
+            <label for="contribution">2. Contribuição dos participantes (opcional)</label>
+            <input id="contribution" type="text" maxlength="200" [formControl]="contribution" placeholder="Ex.: uma palavra dita pelo público" aria-describedby="contribution-help">
+            <p class="hint" id="contribution-help">Peça depois de divulgar o compromisso. Ela entra na semente, então ninguém consegue prever o resultado sozinho.</p>
+            <button type="button" class="text-button" (click)="cancelCommitment()">Descartar compromisso</button>
+          </div>
+        }
         @if (error()) {
           <p class="error" role="alert">{{ error() }}</p>
         }
         <div class="actions">
-          <button class="primary" type="submit">Sortear agora <span aria-hidden="true">↗</span></button>
+          <button class="primary" type="submit" [disabled]="busy()">
+            {{ audited.value ? (pending() ? 'Sortear e revelar' : 'Gerar compromisso') : 'Sortear agora' }}
+            <span aria-hidden="true">↗</span>
+          </button>
           <button class="secondary" type="button" (click)="resetSequence()" [disabled]="!result()">Nova sequência</button>
         </div>
       </form>
@@ -61,6 +79,23 @@
               <li>{{ winner }}</li>
             }
           </ol>
+          @if (round.receipt; as receipt) {
+            <details class="receipt" data-test="receipt">
+              <summary>Comprovante do sorteio auditável</summary>
+              <dl>
+                <dt>Compromisso</dt><dd><code class="hash">{{ receipt.commitment }}</code></dd>
+                <dt>Semente revelada</dt><dd><code class="hash">{{ receipt.seed }}</code></dd>
+                <dt>Contribuição</dt><dd>{{ receipt.contribution || 'nenhuma' }}</dd>
+                <dt>Lista</dt><dd>{{ receipt.pool.length }} opções</dd>
+              </dl>
+              <div class="receipt-actions">
+                @if (verificationLink(receipt); as link) {
+                  <button type="button" class="ghost" (click)="copy(link, 'link')">{{ copied() === 'link' ? 'Link copiado' : 'Copiar link de verificação' }}</button>
+                }
+                <button type="button" class="ghost" (click)="downloadReceipt(receipt)">Baixar comprovante</button>
+              </div>
+            </details>
+          }
         } @else {
           <div class="empty-result">
             <span aria-hidden="true">✦</span>
@@ -80,6 +115,30 @@
       }
     </section>
   </div>
+
+  <section class="panel verify" aria-labelledby="verify-title">
+    <p class="eyebrow">03 / VERIFICAÇÃO</p>
+    <h2 id="verify-title">Confira um sorteio auditável</h2>
+    <p class="hint">Cole o comprovante (JSON) ou abra o link de verificação. As contas são refeitas aqui, no seu navegador.</p>
+    <label for="receipt">Comprovante</label>
+    <textarea id="receipt" rows="5" [formControl]="receiptInput" placeholder='{"version": 1, ...}'></textarea>
+    <div class="actions">
+      <button type="button" class="secondary" (click)="verifyPasted()" [disabled]="!receiptInput.value.trim()">Verificar</button>
+    </div>
+    @if (verifyError()) {
+      <p class="error" role="alert">{{ verifyError() }}</p>
+    }
+    @if (verification(); as check) {
+      <div class="verdict" [class.ok]="check.ok" role="status" data-test="verdict">
+        <p><strong>{{ check.ok ? 'Sorteio válido' : 'O comprovante não confere' }}</strong></p>
+        <ul>
+          @for (item of check.checks; track item.label) {
+            <li [class.ok]="item.ok"><span aria-hidden="true">{{ item.ok ? '✓' : '✗' }}</span> {{ item.label }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </section>
 
   <footer>Listas e resultados ficam nesta página durante a sessão.</footer>
 </main>
