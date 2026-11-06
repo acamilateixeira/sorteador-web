@@ -98,3 +98,7 @@ Abra `http://localhost:4200`. Para rodar os testes e o build:
 npm test -- --watch=false
 npm run build
 ```
+
+## Postman, Insomnia e verificação
+
+Importe a [coleção Sorteador](docs/postman.collection.json) para verificar a resposta HTML da demo. Para validar a lógica, use `npm test -- --watch=false` e, no navegador, sorteie duas vezes com a opção de excluir resultados anteriores. Para conferir o servidor local, ajuste `baseUrl` para `http://localhost:4200` e `pagePath` para `/`. No modo auditável, gere o comprovante, valide no verificador e altere um campo para conferir que o arquivo modificado é rejeitado.

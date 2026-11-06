@@ -100,3 +100,7 @@ Open `http://localhost:4200`. To run the tests and the build:
 npm test -- --watch=false
 npm run build
 ```
+
+## Postman, Insomnia, and verification
+
+Import the [Sorteador collection](docs/postman.collection.json) to check the public demo HTML response. Verify the draw logic with `npm test -- --watch=false`. In the browser, run two draws with previous results excluded. For the local server, set `baseUrl` to `http://localhost:4200` and `pagePath` to `/`. In auditable mode, export the proof, verify it, and edit one field to confirm the altered file is rejected.
