@@ -14,8 +14,11 @@ import { ensureWebCrypto } from './test-crypto';
 
 const pool = ['Ana', 'Bruno', 'Carla', 'Davi', 'Eva', 'Fábio', 'Gil'];
 
+// Semente fixa: os casos de adulteração ficam determinísticos.
+const SEED = 'c'.repeat(64);
+
 async function auditedRound(contribution = 'girassol'): Promise<Receipt> {
-  const commitment = await commitTo(pool, 3);
+  const commitment = await commitTo(pool, 3, SEED);
   const winners = await seededDraw(pool, 3, await drawSeed(commitment.seed, contribution));
   return {
     version: 1,
