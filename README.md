@@ -49,6 +49,7 @@ sequenceDiagram
 
 ### Limites da auditoria
 
+- **Alcance do comprovante.** Ele serve para verificação técnica do sorteio. Não constitui certificação oficial nem substitui a autorização exigida para promoções comerciais no Brasil. [Ministério da Fazenda](https://www.gov.br/pt-br/servicos/obter-autorizacao-para-atividades-de-distribuicao-gratuita-de-premios-a-titulo-de-propaganda-ou-de-captacao-de-poupanca-popular)
 - O compromisso só tem valor se for divulgado **antes** do sorteio.
 - A contribuição precisa vir de alguém que não seja o organizador.
 - **O comprovante contém a lista inteira.** Só compartilhe o link onde a lista puder ser vista por todos. Ele leva o comprovante no fragmento (`#`), que o navegador não envia ao servidor, mas fica no histórico e em qualquer lugar onde o link for colado.

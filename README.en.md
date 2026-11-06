@@ -51,6 +51,7 @@ sequenceDiagram
 
 ### Audit limits
 
+- **Scope of the receipt.** It is used for technical verification of the draw. It does not constitute official certification or replace the authorization required for commercial promotions in Brazil. [Brazilian Ministry of Finance](https://www.gov.br/pt-br/servicos/obter-autorizacao-para-atividades-de-distribuicao-gratuita-de-premios-a-titulo-de-propaganda-ou-de-captacao-de-poupanca-popular)
 - The commitment only helps if it is shared **before** the draw.
 - The contribution has to come from someone other than the organizer.
 - **The receipt contains the whole list.** Only share the link where the list can be public. The receipt lives in the URL fragment (`#`), which the browser never sends to the server, but it stays in browser history and anywhere the link is pasted.
